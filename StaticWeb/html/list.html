@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map</title>
+    <link rel="stylesheet" href="files/css/bootstrap.css">
+    <link rel="stylesheet" href="files/css/datatables.css">
+    <link rel="stylesheet" href="files/css/style.css">
+    <script src="files/js/bootstrap.bundle.js"></script>
+    <script src="files/js/jquery.js"></script>
+    <script src="files/js/datatables.js"></script>
+    <script src="files/js/tables.js"></script>
+</head>
+<header>
+    <div class="container">
+        <nav class="navbar bg-dark navbar-expand navbar-light radius">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                    <a class="nav-link text-white" href="/">Назад</a>
+                    </li>
+                    <button class="nav-item btn btn-outline-primary" id="clear">Очистить список</button>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<body class="container">
+    <div id="table2">
+        <table id="table1" width="50%"> 
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>X</th>
+                    <th>Y</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .}}
+                <tr>
+                    <td>{{.Address}}</td>
+                    <td>{{.X}}</td>
+                    <td>{{.Y}}</td>
+                </tr> 
+                {{end}}
+            </tbody>    
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+        $('#clear').on('click',function(e){
+            $.ajax({
+                url: "/clearlist",
+                type: "POST"
+            });
+            var table = $("#table1").DataTable();
+            table.clear().draw();
+        });
+    });
+    </script>
+</body>
+</html>

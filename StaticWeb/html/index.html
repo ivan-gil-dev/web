@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map</title>
+    <link rel="stylesheet" href="files/css/bootstrap.css">
+    <link rel="stylesheet" href="files/css/datatables.css">
+    <link rel="stylesheet" href="files/css/style.css">
+    <script src="files/js/jquery.js"></script>
+    <script src="files/js/datatables.js"></script>
+    <script src="files/js/bootstrap.bundle.js"></script>    
+</head>
+<header>
+    <div class="container">
+        <nav class="navbar bg-dark navbar-expand navbar-light radius">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                    <a class="nav-link text-white" href="/list">Список</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+<body>
+    <div class="container">
+        <div class="form1">
+            <form action="/" method="POST"></form>
+                <div class="row justify-content-center"> 
+                    <div class="col-md-4">
+                        <label for="">Введите адрес</label>
+                        <input class="form-control" type="text" value="" id="form1_text">
+                    </div>
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    <input class="btn btn-outline-success" type="submit" id="button1">
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <script>
+
+
+    $(document).ready(function(){
+        $('#button1').on('click',function(e){
+            var adr = $('#form1_text').val();
+            console.log(adr);
+            $.ajax({
+                url: "/processing",
+                type: "POST",
+                data: {'Address' : adr},
+                success: function() {
+                    alert("Запрос выполнен");
+                }
+            });
+        });
+    });
+
+    </script>
+
+</body>
+</html>
