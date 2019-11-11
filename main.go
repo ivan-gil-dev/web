@@ -30,13 +30,17 @@ type geocode struct {
 const APIKey = "023f7c73-40fd-4d88-8ab6-9bc2fde16a08"
 
 func init() {
-	var login, password string
+	var login, password, host, port string
 	fmt.Println("Вход в PostrgreSQL")
 	fmt.Println("Введите логин:")
 	fmt.Scan(&login)
 	fmt.Println("Введите пароль:")
 	fmt.Scan(&password)
-	sqllogin := "user=" + login + " password=" + password + " sslmode=disable"
+	fmt.Println("Введите хост")
+	fmt.Scan(&host)
+	fmt.Println("Введите порт")
+	fmt.Scan(&port)
+	sqllogin := "user=" + login + " password=" + password + " sslmode=disable host=" + host + " port=" + port
 	fmt.Println(sqllogin)
 	var err error
 	db, err = sql.Open("postgres", sqllogin)
